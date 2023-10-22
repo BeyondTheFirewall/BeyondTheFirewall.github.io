@@ -2271,3 +2271,27 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
+/* Your existing CSS styles */
+
+/* Dark mode styles */
+:root {
+  --background-color-light: #ffffff; /* Light mode background color */
+  --background-color-dark: #1a1a1a; /* Dark mode background color */
+}
+
+/* Apply background color based on user preference */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--background-color-dark);
+    color: #ffffff; /* Set text color for dark mode */
+  }
+}
+
+/* Forcing dark mode regardless of user preference */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--background-color-dark);
+    color: #ffffff; /* Set text color for dark mode */
+  }
+}
+
