@@ -2286,4 +2286,10 @@ button,
     color: #ffffff; /* Set text color for dark mode */
   }
 }
-
+/* Forcing dark mode regardless of user preference */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--background-color-dark);
+    color: #ffffff; /* Set text color for dark mode */
+  }
+}
