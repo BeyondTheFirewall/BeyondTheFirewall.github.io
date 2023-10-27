@@ -2294,8 +2294,9 @@ button,
     color: #ffffff; /* Set text color for dark mode */
   }
 }
-/* Add a new CSS rule to change the left panel's background color */
-body .left-panel {
-    background-color: black !important;
+/* Add a new CSS rule to change the hamburger icon's background color */
+.hamburger-container .hamburger-icon {
+  background-color: black;
+  color: white; /* Set text color to white for contrast */
 }
 
