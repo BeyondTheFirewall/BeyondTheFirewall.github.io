@@ -2287,16 +2287,3 @@ button,
   }
 }
 
-/* Forcing dark mode regardless of user preference */
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--background-color-dark);
-    color: #ffffff; /* Set text color for dark mode */
-  }
-}
-/* Add a new CSS rule to change the hamburger icon's background color */
-.hamburger-container .hamburger-icon {
-  background-color: black;
-  color: white; /* Set text color to white for contrast */
-}
-
