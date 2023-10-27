@@ -2294,4 +2294,7 @@ button,
     color: #ffffff; /* Set text color for dark mode */
   }
 }
-
+/* Add a new CSS rule to change the left panel's background color */
+body .left-panel {
+  background-color: black;
+}
