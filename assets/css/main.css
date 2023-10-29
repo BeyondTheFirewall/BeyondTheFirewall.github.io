@@ -121,7 +121,7 @@ a {
       color: inherit; }
 
 strong, b {
-  color: #3d4449;
+  color: #ffffff;
   font-weight: 600; }
 
 em, i {
@@ -131,7 +131,7 @@ p {
   margin: 0 0 2em 0; }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #000000;
+  color: #ffffff;
   font-family: "Roboto Slab", serif;
   font-weight: 700;
   line-height: 1.5;
@@ -1141,7 +1141,7 @@ input[type="radio"] {
   input[type="radio"]:checked + label:before {
     background: #000000;
     border-color: #ff6161;
-    color: #000000;
+    color: #ffffff;
     content: '\f00c'; }
   input[type="checkbox"]:focus + label:before,
   input[type="radio"]:focus + label:before {
@@ -1155,25 +1155,25 @@ input[type="radio"] + label:before {
   border-radius: 100%; }
 
 ::-webkit-input-placeholder {
-  color: #9fa3a6 !important;
+  color: #ffffff !important;
   opacity: 1.0; }
 
 :-moz-placeholder {
-  color: #9fa3a6 !important;
+  color: #ffffff !important;
   opacity: 1.0; }
 
 ::-moz-placeholder {
-  color: #9fa3a6 !important;
+  color: #feffff !important;
   opacity: 1.0; }
 
 :-ms-input-placeholder {
-  color: #9fa3a6 !important;
+  color: #f9f9f9 !important;
   opacity: 1.0; }
 
 /* Box */
 .box {
   border-radius: 0.375em;
-  border: solid 1px rgba(165, 165, 165, 0.75);
+  border: solid 1px rgba(255, 255, 255, 0.895);
   margin-bottom: 2em;
   padding: 1.5em; }
   .box > :last-child,
@@ -1421,12 +1421,12 @@ ul.pagination {
       padding: 0 0.5em;
       text-align: center; }
       ul.pagination li > .page.active {
-        background-color: #f56a6a;
-        color: #000000 !important; }
+        background-color: #0c0c0c;
+        color: #ffffff !important; }
         ul.pagination li > .page.active:hover {
-          background-color: #f67878; }
+          background-color: #040404; }
         ul.pagination li > .page.active:active {
-          background-color: #f45c5c; }
+          background-color: #010101; }
     ul.pagination li:first-child {
       padding-right: 0.75em; }
     ul.pagination li:last-child {
@@ -1446,7 +1446,7 @@ table {
   margin: 0 0 2em 0;
   width: 100%; }
   table tbody tr {
-    border: solid 1px rgba(255, 92, 92, 0.97);
+    border: solid 1px rgba(255, 255, 255, 0.97);
     border-left: 0;
     border-right: 0; }
     table tbody tr:nth-child(2n + 1) {
