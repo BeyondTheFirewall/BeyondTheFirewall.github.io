@@ -2198,7 +2198,7 @@ button,
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  color: #3d4449;
+  color: #000000;
   font-family: "Roboto Slab", serif;
   font-weight: 400;
   letter-spacing: 0.075em;
@@ -2239,7 +2239,7 @@ button,
         -webkit-transition: color 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
         -ms-transition: color 0.2s ease-in-out, -ms-transform 0.2s ease-in-out;
         transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-        color: #9fa3a6;
+        color: #000000;
         content: '\f078';
         position: absolute;
         right: 0; }
