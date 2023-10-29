@@ -1928,7 +1928,7 @@ button,
   -webkit-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
   -ms-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
   transition: margin-left 0.5s ease, box-shadow 0.5s ease;
-  background-color: #f5f6f7;
+  background-color: #070707;
   font-size: 0.9em;
   position: relative;
   width: 26em; }
@@ -1939,7 +1939,7 @@ button,
     position: relative;
     width: 26em; }
     #sidebar > .inner > * {
-      border-bottom: solid 2px rgba(210, 215, 217, 0.75);
+      border-bottom: solid 2px rgba(3, 3, 3, 0.75);
       margin: 0 0 3.5em 0;
       padding: 0 0 3.5em 0; }
       #sidebar > .inner > * > :last-child {
@@ -1949,7 +1949,7 @@ button,
         margin-bottom: 0;
         padding-bottom: 0; }
     #sidebar > .inner > .alt {
-      background-color: #eff1f2;
+      background-color: #000000;
       border-bottom: 0;
       margin: -2.22222em 0 4.44444em -2.22222em;
       padding: 2.22222em;
@@ -2254,11 +2254,11 @@ button,
         transform: rotate(-180deg); }
 
 #menu > ul > li {
-  border-top: solid 1px rgba(210, 215, 217, 0.75);
+  border-top: solid 1px rgba(0, 0, 0, 0.75);
   margin: 0.5em 0 0 0;
   padding: 0.5em 0 0 0; }
   #menu > ul > li > ul {
-    color: #9fa3a6;
+    color: #000000;
     display: none;
     margin: 0.5em 0 1.5em 0;
     padding-left: 1em; }
@@ -2271,25 +2271,9 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
-/* Your existing CSS styles */
 
-/* Dark mode styles */
-:root {
-  --background-color-light: #ffffff; /* Light mode background color */
-  --background-color-dark: #1a1a1a; /* Dark mode background color */
-}
+    :root {
+  
+      --background-color-dark: #1a1a1a; /* Dark mode background color */
+    }
 
-/* Apply background color based on user preference */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--background-color-dark);
-    color: #ffffff; /* Set text color for dark mode */
-  }
-}
-/* Forcing dark mode regardless of user preference */
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--background-color-dark);
-    color: #ffffff; /* Set text color for dark mode */
-  }
-}
