@@ -181,7 +181,11 @@ h6 {
     line-height: 1.4; }
   h2 {
     font-size: 1.5em; } }
-
+@media only screen and (max-width: 560px) {
+img {
+width: 100%;
+}
+}
 sub {
   font-size: 0.8em;
   position: relative;
