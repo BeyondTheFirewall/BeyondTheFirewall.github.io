@@ -186,6 +186,10 @@ img {
 width: 100%;
 }
 }
+.container img {
+    max-width: 100%;
+    height: auto;
+}
 sub {
   font-size: 0.8em;
   position: relative;
