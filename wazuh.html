@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Wazuh in AWS EC2 - Comprehensive Guide</title>
+    <title>Wazuh SIEM - Comprehensive Guide</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -18,6 +18,7 @@
 							<!-- Header -->
 								<header id="header">
 									<a href="index.html" class="logo"><strong>Home</strong></a>
+									<a href="generic.html" class="logo"><strong>generic</strong></a>
 									<ul class="icons">
 										<li><a href="https://www.linkedin.com/in/gautham-shridhar-bhandari/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
 										<li><a href="https://github.com/gauthamsb777/gauthamsb777" class="icon brands fa-github"><span class="label">Github</span></a></li>
@@ -28,7 +29,7 @@
                 <!-- Content -->
                 <section>
                     <header class="main">
-                        <h1>Implementing Wazuh SIEM</h1>
+                        <h1>Implementation Wazuh SIEM</h1>
                     </header>
 
                     <p>Wazuh is an open-source security platform that integrates SIEM (Security Information and Event Management) and XDR (Extended Detection and Response) for endpoints and cloud workloads. This document provides a practical guide for deploying Wazuh on an AWS EC2 instance, including installation steps, configuring network-based intrusion detection, and creating dashboards and alerting systems.</p>
@@ -181,22 +182,28 @@ sudo chmod 640 /etc/suricata/rules/*.rules</code></pre>
                     <h3>Security Event Dashboard</h3>
                     <p>The Security Event Dashboard provides an overview of security events across your infrastructure. It typically includes event count over time, top alert categories, severity distribution, geographic distribution of events, and top affected assets.</p>
                     <p></p>
+		    <u>Ubuntu Dashboard : </u>
                     <img src="assets/images/Event_dashboard_ubuntu.png" alt="" />
-                    <u>Security Event Dashboard - Ubuntu</u>
+                    
                     <p></p>
+		    <u>Windows event dashboard :</u>
                     <img src="assets/images/Event_dashboard_windows.png" alt="" />
-                    <u>Windows event dashboard</u>
+                    
 
                     <p></p>
 
                     <h3>HIPAA Compliance Dashboard</h3>
                     <p>The HIPAA Compliance Dashboard helps track adherence to HIPAA requirements, including access control monitoring, audit logging, data encryption status, and integrity monitoring alerts.</p>
                     <p></p>
+		    <u>HIPAA Compliance Requirements :</u>
+		    <p></p>
                     <img src="/assets/images/HIPAA_dashboard_1.png" alt="" />
-                    <u>HIPAA Compliance Requirements</u>
+                    
                     <p></p>
+		    <u>HIPAA Compliance Dashboard :</u>
+		    <p></p>
                     <img src="/assets/images/HIPAA_dashboard_2.png" alt="" />
-                    <u>HIPAA Compliance Dashboard</u>
+                    
 
                     <p></p>
 
@@ -210,13 +217,13 @@ sudo chmod 640 /etc/suricata/rules/*.rules</code></pre>
 
                     <h3>Security event description</h3>
                     <p></p>
-                    <p>Trojan alert :</p>
+                    <u>Trojan alert :</u>
                     <img src="/assets/images/Security_Event_1.png" alt="" />
                    
                     <p></p>
                     <p></p>
 
-                    <p>Failed login attempts :</p>
+                    <u>Failed login attempts :</u>
                     <img src="/assets/images/Security_event_2.png" alt="" />
                     
                     
@@ -224,15 +231,18 @@ sudo chmod 640 /etc/suricata/rules/*.rules</code></pre>
                     <p></p>
 
                     <h3>MITRE ATT&CK Dashboard</h3>
+		    <p></p>
                     <p>The MITRE ATT&CK Dashboard maps detected activities to the MITRE ATT&CK framework, showing tactics and techniques observed, frequency of each technique, affected assets per technique, and timeline of detected ATT&CK patterns.</p>
-                    <img src="/assets/images/mitre_dashboard.png" alt="" />
-                    <u>MITRE Dashboard</u>
+                    <u>MITRE Dashboard :</u>
+		    <img src="/assets/images/mitre_dashboard.png" alt="" />
+                    
 
                     <p></p>
                     <p></p>
 
+		    <u>MITRE Events :</u>
                     <img src="/assets/images/mitre_event.png" alt="" />
-                    <u>MITRE Events</u>
+                    
 
                     <p></p>
                     <p></p>
