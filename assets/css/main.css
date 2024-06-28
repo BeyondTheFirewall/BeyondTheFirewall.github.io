@@ -186,8 +186,14 @@ img {
 width: 100%;
 }
 }
+.container {
+    width: 200px;
+    height: 120px;
+}
+
+/* Resize images */
 .container img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
 }
 sub {
