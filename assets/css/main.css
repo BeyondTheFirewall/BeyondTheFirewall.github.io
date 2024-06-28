@@ -181,7 +181,7 @@ h6 {
     line-height: 1.4; }
   h2 {
     font-size: 1.5em; } }
-@media only screen and (max-width: 560px) {
+@media only screen and (max-width: 650px) {
 img {
 width: 100%;
 }
