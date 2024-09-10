@@ -1,348 +1,444 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Wazuh SIEM Configuration</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+<title>Wazuh SIEM - Comprehensive Guide</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<style>
+body {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #1a1a1a;
+}
+#wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.header-links {
+    display: flex;
+    gap: 2.5rem;
+}
+.header-links a {
+    white-space: nowrap;
+    font-size: 1.2em;
+    color: #4a4a4a;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.header-links a:hover {
+    color: #007bff;
+}
+h1 {
+    margin: 40px 0;
+    font-size: 3em;
+    text-align: center;
+    color: #2c3e50;
+}
+.content {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.icons {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+.icons a {
+    font-size: 1.5em;
+    color: #4a4a4a;
+    transition: color 0.3s ease;
+}
+.icons a:hover {
+    color: #007bff;
+}
+.image-container {
+    margin: 40px 0;
+    text-align: center;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: block;
+    margin: 0 auto;
+}
+.resized-image {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .resized-image {
+        max-width: 100%;
+    }
+}
+</style>
 </head>
 <body class="is-preload">
 
     <!-- Wrapper -->
     <div id="wrapper">
 
-                <!-- Main -->
-					<div id="main">
-						<div class="inner">
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
 
-							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo"><strong>Home</strong></a>
-							
-									<ul class="icons">
-										<li><a href="https://www.linkedin.com/in/gautham-shridhar-bhandari/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-										<li><a href="https://github.com/gauthamsb777/gauthamsb777" class="icon brands fa-github"><span class="label">Github</span></a></li>
-									</ul>
-								</header>
-              
+                <!-- Header -->
+                <header id="header">
+                    <div class="header-content">
+                        <div class="header-links">
+                            <a href="index.html" class="logo"><strong>Home</strong></a>
+                            <a href="wazuh.html" class="logo"><strong>Wazuh</strong></a>
+                        </div>
+                        <ul class="icons">
+                            <li><a href="https://www.linkedin.com/in/gautham-shridhar-bhandari/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://github.com/gauthamsb777/gauthamsb777" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                        </ul>
+                    </div>
+                </header>
 
-                <!-- Content -->
-                <section>
-                    <header class="main">
-                        <h1>Implementation of Wazuh SIEM</h1>
-                    </header>
+    <!-- Main content -->
+    <div id="main">
+        <section>
+            <header class="main">
+                <br><br>
+                <h1>Implementation of Wazuh SIEM</h1>
+            </header>
 
-                    <p>Wazuh is an open-source security platform that integrates SIEM (Security Information and Event Management) and XDR (Extended Detection and Response) for endpoints and cloud workloads. This document provides a practical guide for deploying Wazuh on an AWS EC2 instance, including installation steps, configuring network-based intrusion detection, and creating dashboards and alerting systems.</p>
+            <p>Wazuh is an open-source security platform that integrates SIEM (Security Information and Event Management) and XDR (Extended Detection and Response) for endpoints and cloud workloads. This document provides a practical guide for deploying Wazuh on an AWS EC2 instance, including installation steps, configuring network-based intrusion detection, and creating dashboards and alerting systems.</p>
 
-                    <h2></h2>
-                    
-                    <h2><u>Installation in EC2</u></h2>
-                    <p></p>
-                    <p>EC2 (Elastic Compute Cloud) is a cloud computing platform by Amazon Web Services (AWS) that provides scalable and secure virtual servers.</p>
-                    <p></p>
-                    <ol>
-                        <li>
-                            <p><strong>Open the EC2 Dashboard:</strong></p>
-                            <ul>
-                                <li>Select a name for the instance.</li>
-                                <li>Choose an operating system (e.g., Ubuntu for installing Wazuh server).</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <p><strong>Choose an Instance Type:</strong></p>
-                            <ul>
-                                <li>Instance types vary from low to high computing, memory, and networking needs. For Wazuh server, the requirements depend on the number of endpoint agents monitored.</li>
-                                <li>A minimum for a single agent is 2 CPUs and 4GB RAM. The t3.medium instance type is typically sufficient.</li>
-                                <p><p>
-				
-                                    <img src="assets/images/instance_type.png" alt="" />
-				
-                            </ul>
-                        </li>
-                        <li>
-                            <p><strong>Create a Key Pair and Security Group:</strong></p>
-                            <ul>
-                                <li>Create a key pair for secure access (.pem file for Linux).</li>
-                                <li>Optionally, create a security group (instance firewall) or skip this step for now.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <p><strong>Select Storage:</strong></p>
-                            <ul>
-                                <li>Choose the gp2 (SSD) storage type.</li>
-                                <li>50GB is generally enough for testing, depending on the number of endpoint servers and traffic.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <p><strong>Launch the Instance:</strong></p>
-                            <ul>
-                                <li>Wait 3-4 minutes for the instance to start.</li>
-                                <li>Perform a status check and connect using instance connect or SSH via terminal:</li>
-                                <li><code>ssh -i keypair.pem ubuntu@172.31.32.96</code></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <p><strong>Install Wazuh:</strong></p>
-                            <ul>
-                                <li>Follow the step-by-step installation guide at Wazuh Documentation or use quick installation:</li>
-                                <li><code>curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh && sudo bash ./wazuh-install.sh -a</code></li>
-                            </ul>
-                            <p><strong>Installed packages include:</strong></p>
-                            <ul>
-                                <li><strong>gawk:</strong> A Wazuh dependency for pattern matching in text.</li>
-                                <li><strong>Wazuh Indexer:</strong> An analytical tool for querying and storing log data as JSON files.</li>
-                                <li><strong>Filebeat:</strong> Ships log data from the agent server to the indexer.</li>
-                                <li><strong>Wazuh Dashboard:</strong> Provides a web UI for analyzing and visualizing security events and alerts.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <p><strong>Access the Wazuh Web Portal:</strong></p>
-                            <ul>
-                                <li>Update the security groups to open port 443 for your IP.</li>
-                                <li>Open the web portal via browser using the EC2 instance IP address and port 443. Input the credentials in login page.</li>
-                                <p></p>
-                                <img src="assets/images/Security_groups.png" alt="" />
-                                <p></p>
-                                
-                            </ul>
-                        </li>
-                        <li>
-                            <p><strong>Add Agent:</strong></p>
-                            <ul>
-                                <li>Name the agent server, select the OS, and input the server IP for connecting with the server.</li>
-                                
-                                <p></p>
-                                <img src="assets/images/Adding_agent_1.png" alt="" />
-                                <p></p>
-                                <li>Copy the installation link and execute it on the agent server.</li>
-                                <li>Update the security group to allow the agent server's public IP to access the server and send logs.</li>
-                                <p></p>
-                                <img src="assets/images/Adding_agent_2.png" alt="" />
-                            </ul>
-                        </li>
-                        <li>
-                            <p><strong>Start the Wazuh agent:</strong></p>
-                            <p>For Linux:</p>
-                            <pre><code>systemctl daemon-reload
+            <h2></h2>
+            
+            <h2><u>Installation in EC2</u></h2>
+            <p></p>
+            <p>EC2 (Elastic Compute Cloud) is a cloud computing platform by Amazon Web Services (AWS) that provides scalable and secure virtual servers.</p>
+            <p></p>
+            <ol>
+                <li>
+                    <p><strong>Open the EC2 Dashboard:</strong></p>
+                    <ul>
+                        <li>Select a name for the instance.</li>
+                        <li>Choose an operating system (e.g., Ubuntu for installing Wazuh server).</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Choose an Instance Type:</strong></p>
+                    <ul>
+                        <li>Instance types vary from low to high computing, memory, and networking needs. For Wazuh server, the requirements depend on the number of endpoint agents monitored.</li>
+                        <li>A minimum for a single agent is 2 CPUs and 4GB RAM. The t3.medium instance type is typically sufficient.</li>
+                        <p><p>
+        
+                            <img src="assets/images/instance_type.png" alt="" />
+        
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Create a Key Pair and Security Group:</strong></p>
+                    <ul>
+                        <li>Create a key pair for secure access (.pem file for Linux).</li>
+                        <li>Optionally, create a security group (instance firewall) or skip this step for now.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Select Storage:</strong></p>
+                    <ul>
+                        <li>Choose the gp2 (SSD) storage type.</li>
+                        <li>50GB is generally enough for testing, depending on the number of endpoint servers and traffic.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Launch the Instance:</strong></p>
+                    <ul>
+                        <li>Wait 3-4 minutes for the instance to start.</li>
+                        <li>Perform a status check and connect using instance connect or SSH via terminal:</li>
+                        <li><code>ssh -i keypair.pem ubuntu@172.31.32.96</code></li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Install Wazuh:</strong></p>
+                    <ul>
+                        <li>Follow the step-by-step installation guide at Wazuh Documentation or use quick installation:</li>
+                        <li><code>curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh && sudo bash ./wazuh-install.sh -a</code></li>
+                    </ul>
+                    <p><strong>Installed packages include:</strong></p>
+                    <ul>
+                        <li><strong>gawk:</strong> A Wazuh dependency for pattern matching in text.</li>
+                        <li><strong>Wazuh Indexer:</strong> An analytical tool for querying and storing log data as JSON files.</li>
+                        <li><strong>Filebeat:</strong> Ships log data from the agent server to the indexer.</li>
+                        <li><strong>Wazuh Dashboard:</strong> Provides a web UI for analyzing and visualizing security events and alerts.</li>
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Access the Wazuh Web Portal:</strong></p>
+                    <ul>
+                        <li>Update the security groups to open port 443 for your IP.</li>
+                        <li>Open the web portal via browser using the EC2 instance IP address and port 443. Input the credentials in login page.</li>
+                        <p></p>
+                        <img src="assets/images/Security_groups.png" alt="" />
+                        <p></p>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Add Agent:</strong></p>
+                    <ul>
+                        <li>Name the agent server, select the OS, and input the server IP for connecting with the server.</li>
+                        
+                        <p></p>
+                        <img src="assets/images/Adding_agent_1.png" alt="" />
+                        <p></p>
+                        <li>Copy the installation link and execute it on the agent server.</li>
+                        <li>Update the security group to allow the agent server's public IP to access the server and send logs.</li>
+                        <p></p>
+                        <img src="assets/images/Adding_agent_2.png" alt="" />
+                    </ul>
+                </li>
+                <li>
+                    <p><strong>Start the Wazuh agent:</strong></p>
+                    <p>For Linux:</p>
+                    <pre><code>systemctl daemon-reload
 systemctl enable wazuh-agent
 systemctl start wazuh-agent</code></pre>
-                            <p>For Windows (in PowerShell):</p>
-                            <pre><code>NET START wazuh</code></pre>
-                        </li>
-                    </ol>
+                    <p>For Windows (in PowerShell):</p>
+                    <pre><code>NET START wazuh</code></pre>
+                </li>
+            </ol>
 
-                    <p></p>
-                    <P></P>
+            <p></p>
+            <P></P>
 
-                    <h2>Integrating Network based intrusion detection with suricata</h2>
-                    <p></p>
-                    <ol>
-                        <li>
-                            <p><strong>Install suricata:</strong></p>
-                            <pre><code>sudo add-apt-repository ppa:oisf/suricata-stable
+            <h2>Integrating Network based intrusion detection with suricata</h2>
+            <p></p>
+            <ol>
+                <li>
+                    <p><strong>Install suricata:</strong></p>
+                    <pre><code>sudo add-apt-repository ppa:oisf/suricata-stable
 sudo apt-get update
 sudo apt-get install suricata -y</code></pre>
-                        </li>
-                        <li>
-                            <p><strong>Apply rulesets:</strong></p>
-                            <pre><code>cd /tmp/ && curl -LO https://rules.emergingthreats.net/open/suricata-6.0.8/emerging.rules.tar.gz
+                </li>
+                <li>
+                    <p><strong>Apply rulesets:</strong></p>
+                    <pre><code>cd /tmp/ && curl -LO https://rules.emergingthreats.net/open/suricata-6.0.8/emerging.rules.tar.gz
 sudo tar -xvzf emerging.rules.tar.gz && sudo mv rules/*.rules /etc/suricata/rules/
 sudo chmod 640 /etc/suricata/rules/*.rules</code></pre>
-                        </li>
-                        <li>
-                            <p>Navigate to /etc/suricata/suricata.yml to configure and enter the network interface in yml</p>
-                        </li>
-                        <li>
-                            <p><strong>Start suricata:</strong></p>
-                            <pre><code>systemctl start suricata</code></pre>
-                        </li>
-                        <li>
-                            <p>Edit ossec.conf in wazuh agent machine to collect suricata logs from /var/log/suricata/eve.json</p>
-                        </li>
-                        <li>
-                            <p><strong>Navigate to /var/ossec/etc/ossec.conf add this:</strong></p>
-                            <pre><code>&lt;ossec_config&gt;
-  &lt;localfile&gt;
-    &lt;log_format&gt;json&lt;/log_format&gt;
-    &lt;location&gt;/var/log/suricata/eve.json&lt;/location&gt;
-  &lt;/localfile&gt;
+                </li>
+                <li>
+                    <p>Navigate to /etc/suricata/suricata.yml to configure and enter the network interface in yml</p>
+                </li>
+                <li>
+                    <p><strong>Start suricata:</strong></p>
+                    <pre><code>systemctl start suricata</code></pre>
+                </li>
+                <li>
+                    <p>Edit ossec.conf in wazuh agent machine to collect suricata logs from /var/log/suricata/eve.json</p>
+                </li>
+                <li>
+                    <p><strong>Navigate to /var/ossec/etc/ossec.conf add this:</strong></p>
+                    <pre><code>&lt;ossec_config&gt;
+&lt;localfile&gt;
+&lt;log_format&gt;json&lt;/log_format&gt;
+&lt;location&gt;/var/log/suricata/eve.json&lt;/location&gt;
+&lt;/localfile&gt;
 &lt;/ossec_config&gt;</code></pre>
-                        </li>
-                        <li>
-                            <p>To filter network level events using suricata use rule.groups:suricata ruleset in field to filter out suricata alerts.</p>
-                        </li>
-                    </ol>
+                </li>
+                <li>
+                    <p>To filter network level events using suricata use rule.groups:suricata ruleset in field to filter out suricata alerts.</p>
+                </li>
+            </ol>
 
-                    <p></p>
-                    <p></p>
-                    <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
 
-                    <h2>Dashboards and Visualization</h2>
+            <h2>Dashboards and Visualization</h2>
 
-                    <p></p>
+            <p></p>
 
-                    <h3>Security Event Dashboard</h3>
-                    <p>The Security Event Dashboard provides an overview of security events across your infrastructure. It typically includes event count over time, top alert categories, severity distribution, geographic distribution of events, and top affected assets.</p>
-		    <hr>
-		    <u>Ubuntu Dashboard : </u>
-                    <img src="assets/images/Event_dashboard_ubuntu.png" alt="" />
-                    <hr>
-                    <hr>
-		    <u>Windows event dashboard :</u>
-		    
-                    <img src="assets/images/Event_dashboard_windows.png" alt="" />
-                    
+            <h3>Security Event Dashboard</h3>
+            <p>The Security Event Dashboard provides an overview of security events across your infrastructure. It typically includes event count over time, top alert categories, severity distribution, geographic distribution of events, and top affected assets.</p>
+    <hr>
+    <u>Ubuntu Dashboard : </u>
+            <img src="assets/images/Event_dashboard_ubuntu.png" alt="" />
+            <hr>
+            <hr>
+    <u>Windows event dashboard :</u>
+    
+            <img src="assets/images/Event_dashboard_windows.png" alt="" />
+            
 
-                    <p></p>
+            <p></p>
 
-                    <h3>HIPAA Compliance Dashboard</h3>
-                    <p>The HIPAA Compliance Dashboard helps track adherence to HIPAA requirements, including access control monitoring, audit logging, data encryption status, and integrity monitoring alerts.</p>
-                    <p></p>
-		    <u>HIPAA Compliance Requirements :</u>
-		    <p></p>
-                    <img src="/assets/images/HIPAA_dashboard_1.png" alt="" />
-                    
-                    <p></p>
-		    <u>HIPAA Compliance Dashboard :</u>
-		    <p></p>
-                    <img src="/assets/images/HIPAA_dashboard_2.png" alt="" />
-                    
+            <h3>HIPAA Compliance Dashboard</h3>
+            <p>The HIPAA Compliance Dashboard helps track adherence to HIPAA requirements, including access control monitoring, audit logging, data encryption status, and integrity monitoring alerts.</p>
+            <p></p>
+    <u>HIPAA Compliance Requirements :</u>
+    <p></p>
+            <img src="/assets/images/HIPAA_dashboard_1.png" alt="" />
+            
+            <p></p>
+    <u>HIPAA Compliance Dashboard :</u>
+    <p></p>
+            <img src="/assets/images/HIPAA_dashboard_2.png" alt="" />
+            
 
-                    <p></p>
+            <p></p>
 
-                    <h3>Security Configuration Assessment</h3>
-                    <p>This dashboard provides an overall compliance score, failed checks by category, recommendations for improving security posture, and trend analysis of compliance over time.</p>
-                    <p></p>
-                    <img src="/assets/images/Security_configuration_assessment.png" alt="" />
-                    
-                    <p></p>
-                    <p></p>
+            <h3>Security Configuration Assessment</h3>
+            <p>This dashboard provides an overall compliance score, failed checks by category, recommendations for improving security posture, and trend analysis of compliance over time.</p>
+            <p></p>
+            <img src="/assets/images/Security_configuration_assessment.png" alt="" />
+            
+            <p></p>
+            <p></p>
 
-                    <h3>Security event description</h3>
-                    <p></p>
-                    <u>Trojan alert :</u>
-                    <img src="/assets/images/Security_Event_1.png" alt="" />
-                   
-                    <p></p>
-                    <p></p>
+            <h3>Security event description</h3>
+            <p></p>
+            <u>Trojan alert :</u>
+            <img src="/assets/images/Security_Event_1.png" alt="" />
+           
+            <p></p>
+            <p></p>
 
-                    <u>Failed login attempts :</u>
-                    <img src="/assets/images/Security_event_2.png" alt="" />
-                    
-                    
+            <u>Failed login attempts :</u>
+            <img src="/assets/images/Security_event_2.png" alt="" />
+            
+            
 
+            <p></p>
+            <p></p>
+
+            <h2>Creating custom dashboards</h2>
+            <p></p>
+            <h2>Geo-location Pinning of Attacks</h2>
+            <ol>
+                <li>Click on create visualization and select maps as a layer one.</li>
+                <li>In right side hamburger menu and select data source as wazuh-alerts-* and field as geo-location.</li>
+                <li>Select Data Source Select Field.</li>
+                <li>We can also select styles and other customizations and then update as layer 2.</li>
+            </ol>
+            <img src="assets/images/dashboard_settings_1.png" alt="" />
+            <img src="/assets/images/dashboard_settings_2.png" alt="" />
+            
+            <p></p>
+
+            <p>This is the Geo-location pinning of all failed login attempts:</p>
+            <img src="assets/images/geo-location.png" alt="" />
+
+            <p></p>
+            <p></p>
+
+            <h2>Failed Authentication Attempts Dashboard</h2>
+            <ol>
+                <li>Choose "Data Table" as the visualization type.</li>
+                <li>Set the data source to "wazuh-alerts-*".</li>
+                <li>Add a filter: rule.groups: authentication AND rule.level: >=5</li>
+                <li>Under "Buckets", add: Split rows: agent.name (for source)</li>
+                <li>Split rows: rule.description (for event details)</li>
+                <li>Under "Metrics", add: Count of events</li>
+                <li>Save and add to your dashboard.</li>
+            </ol>
+
+            <h2>Threat Intelligence Integration</h2>
+            <ol>
+                <li>
+                    <p>Edit /var/ossec/etc/ossec.conf on the Wazuh manager:</p>
+                    <pre><code>&lt;ossec_config&gt;
+&lt;integration&gt;
+&lt;name&gt;custom-ti&lt;/name&gt;
+&lt;hook_url&gt;http://your-ti-feed-url&lt;/hook_url&gt;
+&lt;level&gt;3&lt;/level&gt;
+&lt;alert_format&gt;json&lt;/alert_format&gt;
+&lt;/integration&gt;
+&lt;/ossec_config&gt;</code></pre>
+                </li>
+                <li>Create a custom Python script in /var/ossec/integrations/custom-ti.py to parse the feed and generate Wazuh alerts.</li>
+                <li>Restart Wazuh: <code>systemctl restart wazuh-manager</code></li>
+            </ol>
+
+            <h2>Creating alert system</h2>
+            <ol>
+                <li>
+                    <p><strong>Set Up Alerts:</strong></p>
+                    <ul>
+                        <li>Use Opensearch to create an alerting system.</li>
+                        <li>Create a monitor and specify a data source.</li>
+                    </ul>
                     <p></p>
+                    <img src="assets/images/alert_system_1.png" alt="" />
                     <p></p>
-
-                    <h2>Creating custom dashboards</h2>
-                    <p></p>
-                    <h2>Geo-location Pinning of Attacks</h2>
-                    <ol>
-                        <li>Click on create visualization and select maps as a layer one.</li>
-                        <li>In right side hamburger menu and select data source as wazuh-alerts-* and field as geo-location.</li>
-                        <li>Select Data Source Select Field.</li>
-                        <li>We can also select styles and other customizations and then update as layer 2.</li>
-                    </ol>
-                    <img src="assets/images/dashboard_settings_1.png" alt="" />
-                    <img src="/assets/images/dashboard_settings_2.png" alt="" />
-                    
-                    <p></p>
-
-                    <p>This is the Geo-location pinning of all failed login attempts:</p>
-                    <img src="assets/images/geo-location.png" alt="" />
-
-                    <p></p>
-                    <p></p>
-
-                    <h2>Failed Authentication Attempts Dashboard</h2>
-                    <ol>
-                        <li>Choose "Data Table" as the visualization type.</li>
-                        <li>Set the data source to "wazuh-alerts-*".</li>
-                        <li>Add a filter: rule.groups: authentication AND rule.level: >=5</li>
-                        <li>Under "Buckets", add: Split rows: agent.name (for source)</li>
-                        <li>Split rows: rule.description (for event details)</li>
-                        <li>Under "Metrics", add: Count of events</li>
-                        <li>Save and add to your dashboard.</li>
-                    </ol>
-
-                    <h2>Threat Intelligence Integration</h2>
-                    <ol>
-                        <li>
-                            <p>Edit /var/ossec/etc/ossec.conf on the Wazuh manager:</p>
-                            <pre><code>&lt;ossec_config&gt;
-      &lt;integration&gt;
-        &lt;name&gt;custom-ti&lt;/name&gt;
-        &lt;hook_url&gt;http://your-ti-feed-url&lt;/hook_url&gt;
-        &lt;level&gt;3&lt;/level&gt;
-        &lt;alert_format&gt;json&lt;/alert_format&gt;
-      &lt;/integration&gt;
-    &lt;/ossec_config&gt;</code></pre>
-                        </li>
-                        <li>Create a custom Python script in /var/ossec/integrations/custom-ti.py to parse the feed and generate Wazuh alerts.</li>
-                        <li>Restart Wazuh: <code>systemctl restart wazuh-manager</code></li>
-                    </ol>
-
-                    <h2>Creating alert system</h2>
-                    <ol>
-                        <li>
-                            <p><strong>Set Up Alerts:</strong></p>
-                            <ul>
-                                <li>Use Opensearch to create an alerting system.</li>
-                                <li>Create a monitor and specify a data source.</li>
-                            </ul>
-                            <p></p>
-                            <img src="assets/images/alert_system_1.png" alt="" />
-                            <p></p>
-                        </li>
-                        <li>
-                            <p><strong>Configure Monitor:</strong></p>
-                            <ul>
-                                <li>Select the monitor type, monitor frequency and provide a rule or condition for monitoring.</li>
-                                <li>Add scripts for elaborate conditions and alerts.</li>
-                            </ul>
-                            <p>Example script:</p>
-                            <pre><code>int score = 0;
+                </li>
+                <li>
+                    <p><strong>Configure Monitor:</strong></p>
+                    <ul>
+                        <li>Select the monitor type, monitor frequency and provide a rule or condition for monitoring.</li>
+                        <li>Add scripts for elaborate conditions and alerts.</li>
+                    </ul>
+                    <p>Example script:</p>
+                    <pre><code>int score = 0;
 for (int i = 0; i < ctx.results[0].hits.hits.length; i++) {
-  // Weighs 500 errors 10 times as heavily as 503 errors
-  if (ctx.results[0].hits.hits[i]._source.http_status_code == "500") {
-    score += 10;
-  } else if (ctx.results[0].hits.hits[i]._source.http_status_code == "503") {
-    score += 1;
-  }
+// Weighs 500 errors 10 times as heavily as 503 errors
+if (ctx.results[0].hits.hits[i]._source.http_status_code == "500") {
+score += 10;
+} else if (ctx.results[0].hits.hits[i]._source.http_status_code == "503") {
+score += 1;
+}
 }
 if (score > 99) {
-  return true;
+return true;
 } else {
-  return false;
+return false;
 } //This script assigns score to http status codes, here 500 error is given score 10 and 503 code is given score 1. so the score keeps on adding as new connection attempts are made until it hits 100 and the trigger will set off.</code></pre>
 
 <p></p>
 
 <h2>3. Configuring Email Alerts</h2>
 <ol>
-    <li>
-        <p><strong>Enable Email Notifications:</strong></p>
-        <ul>
-            <li>Navigate to /etc/ossec/etc/ossec.conf</li>
-            <li>Add the following configuration to the .conf file:</li>
-        </ul>
-        <pre><code>&lt;ossec_config&gt;
-    &lt;global&gt;
-        &lt;email_notification&gt;yes&lt;/email_notification&gt;
-        &lt;email_to&gt;me@test.com&lt;/email_to&gt;
-        &lt;smtp_server&gt;mail.test.com&lt;/smtp_server&gt;
-        &lt;email_from&gt;wazuh@test.com&lt;/email_from&gt;</code></pre>
-        <p></p>
-        
-    </li>
-    <li>
-        <p><strong>Verify Email Settings:</strong></p>
-        <ul>
-            <li>Check the email settings in the Wazuh dashboard.</li>
-            <li>Ensure all fields are correctly populated.</li>
-        </ul>
-        
-    </li>
+<li>
+<p><strong>Enable Email Notifications:</strong></p>
+<ul>
+    <li>Navigate to /etc/ossec/etc/ossec.conf</li>
+    <li>Add the following configuration to the .conf file:</li>
+</ul>
+<pre><code>&lt;ossec_config&gt;
+&lt;global&gt;
+&lt;email_notification&gt;yes&lt;/email_notification&gt;
+&lt;email_to&gt;me@test.com&lt;/email_to&gt;
+&lt;smtp_server&gt;mail.test.com&lt;/smtp_server&gt;
+&lt;email_from&gt;wazuh@test.com&lt;/email_from&gt;</code></pre>
+<p></p>
+
+</li>
+<li>
+<p><strong>Verify Email Settings:</strong></p>
+<ul>
+    <li>Check the email settings in the Wazuh dashboard.</li>
+    <li>Ensure all fields are correctly populated.</li>
+</ul>
+
+</li>
 </ol>
 <p>After configuration, you will receive security event alerts through email. You can also adjust the number of alerts received per hour in the settings.</p>
 
@@ -350,59 +446,66 @@ if (score > 99) {
 
 <h2>4. Creating New Ruleset</h2>
 <ol>
-    <li>
-        <p><strong>Access Rule Management:</strong></p>
-        <ul>
-            <li>Navigate to the Management section in the Wazuh dashboard.</li>
-            <li>Select "Rules" from the available options.</li>
-        </ul>
-        <p></p>
-        <img src="/assets/images/ruleset_1.png" alt="" />
-        <p></p>
-    </li>
-    <li>
-        <p><strong>Define New Rule:</strong></p>
-        <ul>
-            <li>Write a simple XML code to define the rule and name the ruleset.</li>
-            <li>Example: Create a rule for failed login attempts.</li>
-        </ul>
-        <p>Example XML code:</p>
-        <pre><code>&lt;rule id="100001" level="5"&gt;
-    &lt;description&gt;Failed login attempt&lt;/description&gt;
-    &lt;match&gt;failed login|authentication failure&lt;/match&gt;
-    &lt;group&gt;authentication_failed,&lt;/group&gt;
+<li>
+<p><strong>Access Rule Management:</strong></p>
+<ul>
+    <li>Navigate to the Management section in the Wazuh dashboard.</li>
+    <li>Select "Rules" from the available options.</li>
+</ul>
+<p></p>
+<img src="/assets/images/ruleset_1.png" alt="" />
+<p></p>
+</li>
+<li>
+<p><strong>Define New Rule:</strong></p>
+<ul>
+    <li>Write a simple XML code to define the rule and name the ruleset.</li>
+    <li>Example: Create a rule for failed login attempts.</li>
+</ul>
+<p>Example XML code:</p>
+<pre><code>&lt;rule id="100001" level="5"&gt;
+&lt;description&gt;Failed login attempt&lt;/description&gt;
+&lt;match&gt;failed login|authentication failure&lt;/match&gt;
+&lt;group&gt;authentication_failed,&lt;/group&gt;
 &lt;/rule&gt;</code></pre>
-        
-        <p></p>
 
-        <img src="assets/images/ruleset_2.png" alt="" />
+<p></p>
 
-        <p></p>
+<img src="assets/images/ruleset_2.png" alt="" />
 
-        <p>This example code creates a rule with ID 100001 that detects failed login attempts. It can be used as a ruleset for creating dashboards or other alert systems.</p>
-    </li>
-    <li>
-        <p><strong>Test the Ruleset:</strong></p>
-        <ul>
-            <li>Use the Wazuh testing tool to verify the rule's functionality.</li>
-            <li>Simulate events to ensure the rule triggers appropriately.</li>
-        </ul>
-        
-        <p></p>
+<p></p>
 
-        <img src="/assets/images/ruleset_3.png" alt="" />
+<p>This example code creates a rule with ID 100001 that detects failed login attempts. It can be used as a ruleset for creating dashboards or other alert systems.</p>
+</li>
+<li>
+<p><strong>Test the Ruleset:</strong></p>
+<ul>
+    <li>Use the Wazuh testing tool to verify the rule's functionality.</li>
+    <li>Simulate events to ensure the rule triggers appropriately.</li>
+</ul>
 
-        <p></p>
+<p></p>
 
-    </li>
+<img src="/assets/images/ruleset_3.png" alt="" />
+
+<p></p>
+
+</li>
 </ol>
 
 <h2>CONCLUSION</h2>
 
 <p></p>
 
-<p>Wazuh's open-source platform is flexible and cost-effective, allowing us to scale and customize as needed. Continuous updates and strong community support ensure we stay ahead of emerging threats. Implementing Wazuh is a strategic move to strengthen our overall security posture and effectively protect our digital assets. Wazuh offers real-time event monitoring, detailed log analysis, and proactive threat detection. By integrating with Suricata, we bolster our network-based intrusio
+  
 
+<p>Wazuh's open-source platform is flexible and cost-effective, allowing us to scale and customize as needed. Continuous updates and strong community support ensure we stay ahead of emerging threats. Implementing Wazuh is a strategic move to strengthen our overall security posture and effectively protect our digital assets. Wazuh offers real-time event monitoring, detailed log analysis, and proactive threat detection. By integrating with Suricata, we bolster our network-based intrusion detection, and the custom dashboards and alerting systems provide clear, actionable insights.</p>
 
-
-
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
