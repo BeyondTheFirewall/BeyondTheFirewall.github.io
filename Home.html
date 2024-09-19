@@ -1,0 +1,537 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>BeyondTheFirewall</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+body {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #a9a9a9;
+    background-color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+}
+#wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+#main {
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+.inner {
+    padding: 20px;
+}
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.header-links {
+    display: flex;
+    gap: 2.5rem;
+}
+.header-links a {
+    white-space: nowrap;
+    font-size: 1.2em;
+    color: #a9a9a9;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.header-links a:hover {
+    color: #007bff;
+}
+h1 {
+    margin: 0 0 1.5rem 0;
+    font-size: 3.5rem;
+    text-align: center;
+    color: #a9c7e0;
+}
+h2 {
+    margin: 40px 0;
+    font-size: 2.2em;
+    text-align: center;
+    color: #a9c7e0;
+}
+.content {
+    background-color: transparent;
+    padding: 30px;
+    border-radius: 8px;
+    color: #a9a9a9;
+}
+.icons {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+.icons a {
+    font-size: 2.1em;
+    color: #a9a9a9;
+    transition: color 0.3s ease;
+}
+.icons a:hover {
+    color: #007bff;
+}
+#banner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+.banner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.highlight-name {
+    color: #007bff;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+.intro-text {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+.banner-cta {
+    margin-bottom: 2rem;
+}
+.about-me-link {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+.about-me-link:hover {
+    background-color: #0056b3;
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.icon-link {
+    font-size: 2.5rem;
+    color: #a9a9a9;
+    transition: color 0.3s ease;
+}
+.icon-link:hover {
+    color: #007bff;
+}
+.project-box {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    display: flex;
+    align-items: flex-start;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    text-decoration: none;
+    color: inherit;
+}
+.project-box::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
+    transition: top 0.3s ease;
+}
+.project-box:hover::before {
+    top: 0;
+}
+.project-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+.project-box-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.project-box-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+.project-image {
+    width: 280px;
+    height: 240px;
+    margin-right: 30px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.project-info {
+    flex: 1;
+}
+.project-name {
+    color: #a9c7e0;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+.project-info p {
+    margin: 10px 0;
+    font-size: 1em;
+}
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+.tech-tag {
+    background-color: #3a3a3a;
+    color: #a9c7e0;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+#search-container {
+    margin: 20px 0;
+    text-align: center;
+}
+#search-input {
+    width: 80%;
+    max-width: 600px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #a9a9a9;
+}
+#search-results {
+    margin-top: 20px;
+    text-align: left;
+    color: #a9a9a9;
+}
+.search-result-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+}
+.search-result-item h3 {
+    margin-top: 0;
+    color: #a9c7e0;
+}
+.search-result-item p {
+    margin-bottom: 5px;
+}
+.search-result-item a {
+    color: #007bff;
+    text-decoration: none;
+}
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    #header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header-links {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    .project-box {
+        flex-direction: column;
+    }
+    .project-image {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .social-links {
+        flex-wrap: wrap;
+    }
+}
+</style>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <div class="header-content">
+                        <div class="header-links">
+                            <a href="Home.html" class="logo"><strong>Home</strong></a>
+                            <a href="#wazuh" class="logo"><strong>Projects</strong></a>
+                            <a href="Writings.html" class="logo"><strong>Writings</strong></a>
+                            <a href="#AboutMe.html" class="logo"><strong>About me</strong></a>
+                            
+                        </div>
+                        <ul class="icons">
+                            <li><a href="https://www.linkedin.com/in/gautham-shridhar-bhandari/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://github.com/gauthamsb777/gauthamsb777" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                        </ul>
+                    </div>
+                </header>
+
+                <!-- Search Bar -->
+                <div id="search-container">
+                    <input type="text" id="search-input" placeholder="Search all pages...">
+                    <div id="search-results"></div>
+                </div>
+
+                <!-- Banner -->
+                <section id="banner" class="content">
+                    <div class="banner-content">
+                        <h1>Hello, there</h1>
+                        <div class="intro-text">
+                            <p><span class="highlight-name">I'm Gautham</span>, a cybersecurity professional with a passion for learning and defending systems. Here, I'll share my experiences, showcase my projects, and explore topics that interest me, both in cybersecurity and beyond.</p>
+                        </div>
+                        <div class="banner-cta">
+                            <a href="#about-me" class="about-me-link">More About Me</a>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/gautham-shridhar-bhandari/" class="icon-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/gauthamsb777/gauthamsb777" class="icon-link" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+<!-- Projects Section -->
+<!-- Projects Section -->
+<section class="content">
+    <header class="major">
+        <h2>Projects</h2>
+    </header>
+    <div class="container">
+        <a href="wazuh.html" class="project-box-link">
+            <div id="wazuh" class="project-box">
+                <img src="/assets/images/wazuh.png" alt="Wazuh SIEM Implementation" class="project-image" />
+                <div class="project-info">
+                    <h3 class="project-name">SIEM Implementation with Wazuh</h3>
+                    <p><strong>Completion Date:</strong> August 2024</p>
+                    <p><strong>Primary Function:</strong> Comprehensive Security Information and Event Management with XDR capabilities</p>
+                    <p><strong>Overview:</strong> Implemented Wazuh, an open-source security platform integrating SIEM and XDR, on AWS EC2. Configured network-based intrusion detection with Suricata, created custom dashboards for security events and HIPAA compliance, and set up real-time alerting systems. The solution provides robust log analysis, threat detection, and compliance monitoring across cloud and on-premise environments.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Wazuh</span>
+                        <span class="tech-tag">SIEM</span>
+                        <span class="tech-tag">Threat detection</span>
+                        <span class="tech-tag">SOC</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <br><br>
+        <a href="suricata-splunk-integration.html" class="project-box-link">
+            <div id="suricata" class="project-box">
+                <img src="/assets/images/suricata.png" alt="Suricata IDS with Splunk Enterprise" class="project-image" />
+                <div class="project-info">
+                    <h2 class="project-name">Advanced Network Monitoring: Suricata IDS with Splunk Enterprise</h2>
+                    <p><strong>Completion Date:</strong> September 2024</p>
+                    <p><strong>Primary Function:</strong> Real-time Network Intrusion Detection and Advanced Log Analysis</p>
+                    <p><strong>Overview:</strong> Integrated Suricata IDS with Splunk Enterprise for comprehensive network security monitoring. Implemented custom rules, automated updates, and network segmentation monitoring. Created advanced Splunk visualizations and dashboards for real-time threat analysis, including geographic distribution of alerts and application protocol usage. The system processes high volumes of network traffic, providing actionable intelligence for rapid incident response.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Suricata</span>
+                        <span class="tech-tag">Splunk</span>
+                        <span class="tech-tag">IDS</span>
+                        <span class="tech-tag">Log Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <br><br>
+        <a href="file-integrity-monitoring.html" class="project-box-link">
+            <div id="file-integrity" class="project-box">
+                <img src="/assets/images/file_integrity.png" alt="File Integrity Monitoring System" class="project-image" />
+                <div class="project-info">
+                    <h2 class="project-name">Real-Time File Integrity Monitoring Solution</h2>
+                    <p><strong>Completion Date:</strong> August 2023</p>
+                    <p><strong>Primary Function:</strong> Continuous Monitoring and Alerting of Critical File Changes</p>
+                    <p><strong>Overview:</strong> Developed a proof-of-concept File Integrity Monitor (FIM) using Python. The system creates an integrity baseline of target files/folders using the SHA-512 hashing algorithm, continuously compares actual files against the baseline, and raises alerts for any deviations. The tool enables real-time directory surveillance, flagging changes through alerts in the output, enhancing the ability to detect potential compromises quickly.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SHA-512</span>
+                        <span class="tech-tag">File Monitoring</span>
+                        <span class="tech-tag">Real-time monitoring</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <br><br>
+        <a href="secure-chatroom.html" class="project-box-link">
+            <div id="secure-chatroom" class="project-box">
+                <img src="/assets/images/secure_chat_rooms.png" alt="Self-Hosted Secure Chatroom" class="project-image" />
+                <div class="project-info">
+                    <h2 class="project-name">Self-Hosted Secure Communication tool</h2>
+                    <p><strong>Completion Date:</strong> July 2024</p>
+                    <p><strong>Primary Function:</strong> Secure Multi-User Communication with Advanced Encryption</p>
+                    <p><strong>Overview:</strong> Developed a Python-based self-hosted secure chatroom application using a client-server model. The system uses RSA encryption, invitation-based access with encrypted tokens, security questions, and real-time encrypted messaging. It implements a four-layer security approach including Fernet encrypted tokens, 2048-bit RSA encryption, temporary access codes, and security questions. The application supports both private and public IP hosting, nickname functionality, and color-coded user messages.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">RSA Encryption</span>
+                        <span class="tech-tag">Socket Programming</span>
+                        <span class="tech-tag">Multi-layered security</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+</div>
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+// List of all HTML files to search
+const pagesToSearch = [
+'index.html',
+'wazuh.html',
+'suricata-splunk-integration.html',
+'file-integrity-monitoring.html',
+'secure-chatroom.html'
+// Add all your HTML files here
+];
+
+let pageContents = {};
+
+// Function to fetch and store the content of all pages
+async function fetchAllPages() {
+for (const page of pagesToSearch) {
+    try {
+        const response = await fetch(page);
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        pageContents[page] = {
+            title: doc.title,
+            content: doc.body.innerText
+        };
+    } catch (error) {
+        console.error(`Error fetching ${page}:`, error);
+    }
+}
+}
+
+// Call this function when the page loads
+fetchAllPages();
+
+document.getElementById('search-input').addEventListener('input', function(e) {
+const searchTerm = e.target.value.toLowerCase();
+const resultsDiv = document.getElementById('search-results');
+
+if (searchTerm.length > 2) {
+    const results = searchAllPages(searchTerm);
+    displaySearchResults(results, resultsDiv);
+} else {
+    resultsDiv.innerHTML = '';
+}
+});
+
+function searchAllPages(term) {
+const results = [];
+for (const [page, content] of Object.entries(pageContents)) {
+    if (content.title.toLowerCase().includes(term) || content.content.toLowerCase().includes(term)) {
+        const snippet = getSnippet(content.content, term);
+        results.push({
+            title: content.title,
+            url: page,
+            snippet: snippet
+        });
+    }
+}
+return results;
+}
+
+function getSnippet(content, term) {
+const index = content.toLowerCase().indexOf(term);
+const start = Math.max(0, index - 30);
+const end = Math.min(content.length, index + 30);
+return '...' + content.slice(start, end) + '...';
+}
+
+function displaySearchResults(results, container) {
+if (results.length === 0) {
+    container.innerHTML = '<p>No results found.</p>';
+    return;
+}
+
+let html = '';
+results.forEach(result => {
+    html += `
+        <div class="search-result-item">
+            <h3><a href="${result.url}">${result.title}</a></h3>
+            <p>${result.snippet}</p>
+        </div>
+    `;
+});
+container.innerHTML = html;
+}
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+    </script>
+</body>
+</html>
+</script>
+</body>
+</html>
