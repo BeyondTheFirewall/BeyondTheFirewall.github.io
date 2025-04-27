@@ -1,20 +1,22 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-<title>Wazuh SIEM - Comprehensive Guide</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="assets/css/main.css" />
-<style>
-body {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #ffffff;
-    background-color: #1a1a1a;
-    margin: 0;
-    padding: 0;
-}
-#wrapper {
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+
+        <title>Wazuh SIEM Implmentation</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #ffffff;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #201f1f;
+            }
+            #wrapper {
     max-width: 100%;
     margin: 0 auto;
     padding: 0 20px;
@@ -54,19 +56,108 @@ body {
 .header-links a:hover {
     color: #007bff;
 }
-h1 {
-    margin: 40px 0;
-    font-size: 3em;
-    text-align: center;
-    color: #4a8db7;
-}
-.content {
-    background-color: transparent;
-    padding: 30px;
-    border-radius: 8px;
-    color: #3b3b3b;
-}
-.icons {
+            
+            h1 {
+        margin: 40px 0;
+        font-size: 3em;
+        text-align: center;
+        color: #4296c0;
+    }
+            h1 {
+                margin: 0;
+                font-size: 2.5em;
+            }
+            h2 {
+                color: #51a3f5;
+                border-bottom: 2px solid #45aaee;
+                padding-bottom: 10px;
+                margin-top: 40px;
+            }
+            h3 {
+                color: #53aae4;
+            }
+            .container {
+            background-color: rgb(32, 32, 32);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(31, 30, 30, 0.1);
+        }
+        code {
+            background-color: #333232;
+            border: 1px solid #424040;
+            border-radius: 4px;
+            padding: 2px 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        pre {
+            background-color: #292727;
+            border: 1px solid #1d1b1b;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+            
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: left;
+            }
+            th {
+                background-color: #222020;
+            }
+            .disclaimer {
+                background-color: #292928;
+                padding: 15px;
+                border-radius: 4px;
+                margin: 30px 0;
+                border-left: 4px solid #ef5350;
+            }
+            .note {
+                background-color: #292928;
+                padding: 15px;
+                border-radius: 4px;
+                margin: 20px 0;
+                border-left: 4px solid #66bb6a;
+            }
+            .highlight {
+                background-color: #292928;
+                padding: 20px;
+                border-left: 4px solid #ffd600;
+                margin: 20px 0;
+            }
+            .comparison {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                margin: 30px 0;
+            }
+            .comparison-col {
+                flex: 1;
+                min-width: 300px;
+                border: 1px solid #242121;
+                border-radius: 8px;
+                padding: 20px;
+                background-color: #201e1e;
+            }
+            .comparison-col h3 {
+                margin-top: 0;
+            }
+            .feature-list li {
+                margin-bottom: 10px;
+            }
+            .conclusion {
+                font-weight: 600;
+                font-style: italic;
+                margin: 30px 0;
+            }
+            .icons {
     list-style-type: none;
     padding: 0;
     display: flex;
@@ -89,8 +180,7 @@ h1 {
     height: auto;
     box-shadow: 0 4px 8px rgba(41, 41, 41, 0.1);
 }
-
-/* Responsive adjustments */
+            /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     body {
         font-size: 16px;
@@ -112,7 +202,7 @@ h1 {
         font-size: 2em;
     }
 }
-</style>
+        </style>
 </head>
 <body class="is-preload">
     <!-- Wrapper -->
@@ -124,7 +214,7 @@ h1 {
                 <header id="header">
                     <div class="header-content">
                         <div class="header-links">
-                            <a href="index.html"logo"><strong>Home</strong></a>
+                            <a href="index.html" class="logo"><strong>Home</strong></a>
                             <a href="Projects.html" class="logo"><strong>Projects</strong></a>
                             <a href="Writings.html" class="logo"><strong>Writings</strong></a>
                             <a href="AboutMe.html" class="logo"><strong>About me</strong></a>
@@ -215,7 +305,7 @@ h1 {
                         <li>Update the security groups to open port 443 for your IP.</li>
                         <li>Open the web portal via browser using the EC2 instance IP address and port 443. Input the credentials in login page.</li>
                         <p></p>
-                        <img src="assets/images/Security_groups.png" alt="" />
+                        <img src="assets/images/Security_groups.png" alt="" style="width: 800px;" />
                         <p></p>
                         
                     </ul>
@@ -226,12 +316,12 @@ h1 {
                         <li>Name the agent server, select the OS, and input the server IP for connecting with the server.</li>
                         
                         <p></p>
-                        <img src="assets/images/Adding_agent_1.png" alt="" />
+                        <img src="assets/images/Adding_agent_1.png" alt=""  style="width: 800px;" />
                         <p></p>
                         <li>Copy the installation link and execute it on the agent server.</li>
                         <li>Update the security group to allow the agent server's public IP to access the server and send logs.</li>
                         <p></p>
-                        <img src="assets/images/Adding_agent_2.png" alt="" />
+                        <img src="assets/images/Adding_agent_2.png" alt=""  style="width: 800px;" />
                     </ul>
                 </li>
                 <li>
@@ -299,12 +389,12 @@ sudo chmod 640 /etc/suricata/rules/*.rules</code></pre>
             <p>The Security Event Dashboard provides an overview of security events across your infrastructure. It typically includes event count over time, top alert categories, severity distribution, geographic distribution of events, and top affected assets.</p>
     <hr>
     <u>Ubuntu Dashboard : </u>
-            <img src="assets/images/Event_dashboard_ubuntu.png" alt="" />
+            <img src="assets/images/Event_dashboard_ubuntu.png" alt="" style="width: 900px;" />
             <hr>
             <hr>
     <u>Windows event dashboard :</u>
     
-            <img src="assets/images/Event_dashboard_windows.png" alt="" />
+            <img src="assets/images/Event_dashboard_windows.png" alt=""  style="width: 900px;" />
             
 
             <p></p>
@@ -314,12 +404,12 @@ sudo chmod 640 /etc/suricata/rules/*.rules</code></pre>
             <p></p>
     <u>HIPAA Compliance Requirements :</u>
     <p></p>
-            <img src="/assets/images/HIPAA_dashboard_1.png" alt="" />
+            <img src="/assets/images/HIPAA_dashboard_1.png" alt=""  style="width: 900px;" />
             
             <p></p>
     <u>HIPAA Compliance Dashboard :</u>
     <p></p>
-            <img src="/assets/images/HIPAA_dashboard_2.png" alt="" />
+            <img src="/assets/images/HIPAA_dashboard_2.png" alt=""  style="width: 900px;" />
             
 
             <p></p>
@@ -327,7 +417,7 @@ sudo chmod 640 /etc/suricata/rules/*.rules</code></pre>
             <h3>Security Configuration Assessment</h3>
             <p>This dashboard provides an overall compliance score, failed checks by category, recommendations for improving security posture, and trend analysis of compliance over time.</p>
             <p></p>
-            <img src="/assets/images/Security_configuration_assessment.png" alt="" />
+            <img src="/assets/images/Security_configuration_assessment.png" alt=""  style="width: 800px;" />
             
             <p></p>
             <p></p>
@@ -335,13 +425,15 @@ sudo chmod 640 /etc/suricata/rules/*.rules</code></pre>
             <h3>Security event description</h3>
             <p></p>
             <u>Trojan alert :</u>
-            <img src="/assets/images/Security_Event_1.png" alt="" />
-           
+            <br>
+            <img src="/assets/images/Security_Event_1.png" alt=""  style="width: 800px;" />
+           <br>
             <p></p>
             <p></p>
 
             <u>Failed login attempts :</u>
-            <img src="/assets/images/Security_event_2.png" alt="" />
+            <br>
+            <img src="/assets/images/Security_event_2.png" alt=""  style="width: 800px;" />
             
             
 
@@ -363,7 +455,7 @@ sudo chmod 640 /etc/suricata/rules/*.rules</code></pre>
             <p></p>
 
             <p>This is the Geo-location pinning of all failed login attempts:</p>
-            <img src="assets/images/geo-location.png" alt="" />
+            <img src="assets/images/geo-location.png" alt=""  style="width: 900px;" />
 
             <p></p>
             <p></p>
