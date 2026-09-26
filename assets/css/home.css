@@ -1,0 +1,277 @@
+/* ==========================================================================
+   home.css — shared by index.html and Projects.html
+   ========================================================================== */
+
+h1 {
+  margin: 0 0 var(--space-3);
+  font-size: clamp(2.2rem, 5vw + 1rem, 3.5rem);
+  text-align: center;
+  color: var(--heading);
+  line-height: 1.15;
+}
+
+h2 {
+  margin: var(--space-4) 0 var(--space-2);
+  font-size: clamp(1.6rem, 2.5vw + 1rem, 2.2rem);
+  text-align: center;
+  color: var(--heading);
+}
+
+/* Banner (index.html hero) */
+#banner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: min(85vh, 640px);
+  padding: var(--space-4) 0;
+}
+
+.banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.highlight-name {
+  color: var(--accent-strong);
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.intro-text {
+  font-size: clamp(1.05rem, 0.4vw + 1rem, 1.2rem);
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.banner-cta {
+  margin-bottom: var(--space-3);
+}
+
+.about-me-link {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  background-color: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.about-me-link:hover,
+.about-me-link:focus-visible {
+  background-color: var(--accent-strong);
+  transform: translateY(-1px);
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.4rem;
+  margin-top: var(--space-3);
+}
+
+.icon-link {
+  font-size: 2.2rem;
+  color: var(--text-muted);
+  transition: color var(--transition), transform var(--transition);
+}
+
+/* Same idea as the header nav: an inline <svg fill="currentColor"> inside
+   an .icon-link matches the Font Awesome <i> icons automatically. */
+.icon-link svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: -0.1em;
+}
+
+.icon-link:hover,
+.icon-link:focus-visible {
+  color: var(--accent-strong);
+  transform: translateY(-2px);
+}
+
+/* Search */
+#search-container {
+  margin: var(--space-2) 0 var(--space-3);
+  text-align: center;
+}
+
+#search-input {
+  width: 100%;
+  max-width: 34rem;
+  padding: 0.75rem 1rem;
+  font-size: 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+#search-input:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+#search-results {
+  margin-top: var(--space-2);
+  text-align: left;
+  color: var(--text-muted);
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-result-item {
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.search-result-item h3 {
+  margin-top: 0;
+  color: var(--heading);
+  font-size: 1.05rem;
+}
+
+.search-result-item p {
+  margin-bottom: 0;
+}
+
+.search-result-item a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Project list */
+.major {
+  margin-bottom: var(--space-2);
+}
+
+.container {
+  width: 100%;
+}
+
+.project-box {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(1.1rem, 2.5vw, 1.9rem);
+  margin-bottom: var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: clamp(1rem, 3vw, 1.9rem);
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-box::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), transparent);
+  transition: top 0.3s ease;
+  pointer-events: none;
+}
+
+.project-box:hover::before,
+.project-box:focus-within::before {
+  top: 0;
+}
+
+.project-box:hover,
+.project-box:focus-within {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.project-box-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+.project-box-link:hover,
+.project-box-link:focus-visible {
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-image {
+  width: 280px;
+  max-width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex: 1 1 280px;
+}
+
+.project-info {
+  flex: 3 1 320px;
+  min-width: 0;
+}
+
+.project-name {
+  color: var(--heading);
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.25rem, 1.5vw + 1rem, 1.6rem);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.project-info p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.project-info p strong {
+  color: var(--text);
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.tech-tag {
+  background-color: var(--surface-alt);
+  color: var(--heading);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.85em;
+  border: 1px solid var(--border);
+}
+
+@media screen and (max-width: 700px) {
+  .project-box {
+    flex-direction: column;
+  }
+
+  .project-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}

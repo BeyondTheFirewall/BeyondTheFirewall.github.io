@@ -1,0 +1,53 @@
+/* ==========================================================================
+   about.css — AboutMe.html
+   ========================================================================== */
+
+body {
+  color: var(--text-muted);
+}
+
+h1 {
+  margin: var(--space-3) 0 var(--space-3);
+  font-size: clamp(2.2rem, 5vw + 1rem, 3.5rem);
+  text-align: center;
+  color: var(--heading);
+}
+
+h2 {
+  margin: var(--space-4) 0 var(--space-2);
+  font-size: clamp(1.5rem, 2.2vw + 1rem, 2.2rem);
+  color: var(--heading);
+}
+
+h3 {
+  color: var(--heading-strong);
+  margin-top: var(--space-2);
+}
+
+.content {
+  padding: var(--space-2) 0 var(--space-4);
+  color: var(--text);
+}
+
+.info-section {
+  margin-bottom: var(--space-4);
+}
+
+.info-section p {
+  max-width: var(--read-max);
+}
+
+.info-section ul {
+  max-width: var(--read-max);
+}
+
+.project-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+  text-decoration: underline;
+}

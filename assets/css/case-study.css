@@ -1,0 +1,137 @@
+/* ==========================================================================
+   case-study.css — shared by Wazuh.html, SuricataSplunk.html, EnterpriseLab.html
+   ========================================================================== */
+
+body {
+  color: var(--text);
+}
+
+#header {
+  margin-left: calc(var(--gutter) * -1);
+  margin-right: calc(var(--gutter) * -1);
+}
+
+#header .header-content,
+#header.nav-open .header-content {
+  max-width: none;
+}
+
+h1 {
+  margin: var(--space-2) 0 var(--space-3);
+  font-size: clamp(1.9rem, 4vw + 1rem, 2.75rem);
+  text-align: center;
+  color: var(--heading-strong);
+  line-height: 1.2;
+}
+
+h2 {
+  color: var(--heading-strong);
+  border-bottom: 2px solid var(--border-strong);
+  padding-bottom: 0.5rem;
+  margin: var(--space-4) 0 var(--space-2);
+  font-size: clamp(1.3rem, 1.6vw + 1rem, 1.7rem);
+}
+
+h2:empty,
+p:empty {
+  display: none;
+}
+
+h3 {
+  color: var(--heading);
+  margin: var(--space-3) 0 var(--space-1);
+}
+
+h4 {
+  color: var(--text);
+  margin: var(--space-2) 0 var(--space-1);
+}
+
+p {
+  margin: 0.8rem 0;
+  max-width: 75ch;
+}
+
+ol,
+ul {
+  padding-left: 1.4em;
+  max-width: 80ch;
+}
+
+li {
+  margin: 0.35rem 0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--space-2) 0;
+}
+
+img {
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  margin: 6px 6px 6px 0;
+}
+
+.disclaimer {
+  background-color: var(--surface);
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  margin: var(--space-3) 0;
+  border-left: 4px solid var(--danger);
+}
+
+.note {
+  background-color: var(--surface);
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  margin: var(--space-2) 0;
+  border-left: 4px solid var(--success);
+}
+
+.highlight {
+  background-color: var(--surface);
+  padding: 18px;
+  border-left: 4px solid var(--warning);
+  border-radius: var(--radius-sm);
+  margin: var(--space-2) 0;
+}
+
+.comparison {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+
+.comparison-col {
+  flex: 1 1 260px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  background-color: var(--surface);
+}
+
+.comparison-col h3 {
+  margin-top: 0;
+}
+
+.feature-list li {
+  margin-bottom: 10px;
+}
+
+.conclusion {
+  font-weight: 600;
+  font-style: italic;
+  margin: var(--space-3) 0;
+}
+
+.image-container {
+  margin: var(--space-3) 0;
+  text-align: center;
+}
+
+.image-container img {
+  box-shadow: var(--shadow-sm);
+}

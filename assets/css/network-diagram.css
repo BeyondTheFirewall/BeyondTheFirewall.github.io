@@ -1,0 +1,75 @@
+/* ==========================================================================
+   network-diagram.css — EnterpriseLab.html only
+   The "Network Architecture" box diagram, built from plain divs.
+   Original class names used a fixed 220px/275px layout that overflowed on
+   narrow screens; this keeps the same look but lets it wrap and shrink.
+   ========================================================================== */
+
+.diagram {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: var(--space-2) auto;
+  max-width: 100%;
+  text-align: center;
+}
+
+.diagram .flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.diagram .flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.diagram .block {
+  padding: 10px;
+  margin: 5px;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  background-color: var(--surface-alt);
+  width: 220px;
+  max-width: 100%;
+}
+
+.diagram-box {
+  border: 1px dashed var(--border-strong);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: var(--radius-sm);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.diagram .diagram-box {
+  flex: 1 1 240px;
+  max-width: 280px;
+}
+
+.diagram .arrow {
+  font-size: 20px;
+  margin: 0 5px;
+}
+
+.diagram .connection {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 480px) {
+  .diagram .block {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .diagram .diagram-box {
+    max-width: 100%;
+  }
+}
